@@ -1,0 +1,49 @@
+
+
+.evt-corpo{
+    background: url(./../images/corpo.jpg) no-repeat;
+    
+}
+
+.evt-social{
+    background: url(./../images/social.jpg) no-repeat;
+}
+
+.presentador section{
+    color: white;
+    background-size: cover;
+    justify-content: start;
+    margin: 1rem;
+    
+}
+
+.presentador article{
+    max-width: 300px;
+    min-width: 50%;
+    background-color: rgba(0,0,0,.5);
+    padding: 3rem;
+}
+
+
+.formulario-contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.campo{
+    
+    min-width: 600px;
+}
+.campo input,label{
+    display: block;
+    width: 100%;
+}
+
+
+
+
+
+
+
