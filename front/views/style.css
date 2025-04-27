@@ -41,6 +41,11 @@
     width: 100%;
 }
 
+#nombre_apellido{
+    display: flex;
+    gap: 2rem;
+}
+
 
 
 
