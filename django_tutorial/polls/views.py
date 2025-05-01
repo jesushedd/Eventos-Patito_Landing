@@ -4,8 +4,9 @@ from .models import Question, Choice
 
 from django.http import HttpResponse
 from django.template import loader
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from . import views
 
 #for votes
 from django.urls import reverse
@@ -29,8 +30,11 @@ def detail(request, question_id):
     return render(request, "polls/detail.html", context)
 
 def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    question_selected = get_object_or_404(Question, pk=question_id)
+    response = Choice.objects.filter(question=question_selected)
+    response_frmt =  "\n".join(f"{ch.choice_text} -->> {ch.votes}" for ch in response)
+    print(response_frmt)
+    return HttpResponse(response_frmt)
 
 def vote(request, question_id):
     if request.method != "POST":
@@ -44,12 +48,11 @@ def vote(request, question_id):
     except (KeyError, Choice.DoesNotExist):
         context = {
             "question":question,
-            "error_mesage" : "You didn't seelcted a valid choice"
+            "error_message" : "You didn't seelcted a valid choice"
         }
-
-    
-    
-
-
-
-    return HttpResponse("You're voting on question %s.  , choide id = %s" % (question_id, id_choice_voted))
+        return render(request, "polls/detail.html",context)
+    else: 
+        selected_choice.votes += 1
+        selected_choice.save()
+        #Redirection returning httpREspones: cada vez en un post
+        return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
