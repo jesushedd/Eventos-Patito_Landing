@@ -34,8 +34,8 @@ def results(request, question_id):
 
 def vote(request, question_id):
     if request.method != "POST":
-        raise Http404("Invalid Method")
-    question = get_object_or_404(pk=question_id)
+        raise Http404("Invalid Method wasssa")
+    question = get_object_or_404(Question,pk=question_id)
     #choice from detail.html
     try:
 
