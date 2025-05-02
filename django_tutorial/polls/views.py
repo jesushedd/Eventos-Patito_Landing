@@ -33,7 +33,7 @@ def results(request, question_id):
     question_selected = get_object_or_404(Question, pk=question_id)
     response = Choice.objects.filter(question=question_selected)
     response_frmt =  "\n".join(f"{ch.choice_text} -->> {ch.votes}" for ch in response)
-    print(response_frmt)
+    #print(response_frmt)
     return HttpResponse(response_frmt)
 
 def vote(request, question_id):
@@ -55,4 +55,5 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         #Redirection returning httpREspones: cada vez en un post
-        return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
+        revers_ed = reverse("polls:results", args=(question_id,))
+        return HttpResponseRedirect(revers_ed)
