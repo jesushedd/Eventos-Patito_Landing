@@ -34,7 +34,10 @@ def results(request, question_id):
     response = Choice.objects.filter(question=question_selected)
     response_frmt =  "\n".join(f"{ch.choice_text} -->> {ch.votes}" for ch in response)
     #print(response_frmt)
-    return HttpResponse(response_frmt)
+    context = {
+        "question":question_selected
+    }
+    return render(request, "polls/results.html", context)
 
 def vote(request, question_id):
     if request.method != "POST":

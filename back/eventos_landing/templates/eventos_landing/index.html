@@ -92,7 +92,7 @@
                             <p><strong>{{ pregunta.texto }}</strong></p>
                             <div class="opciones">
                                 {% for opcion in pregunta.opcion_set.all %}
-                                    <input type="checkbox" name="{{pregunta.nombre}}_opcion[]" value="{{opcion.id}}" id="{{opcion.id_texto}}">
+                                    <input type="checkbox" name="{{pregunta.nombre}}[]" value="{{opcion.id}}" id="{{opcion.id_texto}}">
                                     <label for="{{opcion.id_texto}}">{{opcion.id_texto}}</label>
                                 {% endfor %}
                             </div>

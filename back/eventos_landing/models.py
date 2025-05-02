@@ -14,7 +14,7 @@ class Opcion(models.Model):
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     id_texto = models.CharField(max_length=100)
     def __str__(self):
-        return  self.nombre
+        return  self.id_texto
     class Meta:
         constraints = [
             UniqueConstraint(fields=['id_texto'], name="Opcion no repetida")
